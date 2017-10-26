@@ -1,0 +1,211 @@
+{
+	"variables": [],
+	"info": {
+		"name": "saleman",
+		"_postman_id": "c3208d5b-2988-c6fe-f2e7-8e183a1f8436",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "contact",
+			"description": "",
+			"item": [
+				{
+					"name": "contact_list",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"api_name\" : \"contact\",\r\n  \"api_method\" : \"list\",\r\n  \"data\" : {\r\n      \"order_by\" : \"email\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "contact_detail",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"api_name\" : \"contact\",\r\n  \"api_method\" : \"detail\",\r\n  \"data\" : {\r\n      \"contact_id\" : 2\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "contact_add",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"api_name\": \"contact\",\n\t\"api_method\": \"add\",\n\t\"data\" : {\n\t\t\"contact_name\" : \"ging\",\n\t\t\"phone\" : \"12343\",\n\t\t\"email\" : \"g@g.com\",\n\t\t\"line\" : \"gline\",\n\t\t\"fb\" : 121\n\t}\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "contact_update",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"api_name\": \"contact\",\r\n\t\"api_method\": \"update\",\r\n\t\"data\" : {\r\n    \"contact_id\" : 2,\r\n\t\t\"contact_name\" : \"ging\",\r\n\t\t\"phone\" : \"12343\",\r\n\t\t\"email\" : \"g@g.com\",\r\n\t\t\"line\" : \"gline\",\r\n\t\t\"fb\" : 121\r\n\t}\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "contact_delete",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"api_name\" : \"contact\",\r\n  \"api_method\" : \"delete\",\r\n  \"data\" : {\r\n      \"contact_id\" : 2\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "place",
+			"description": "",
+			"item": [
+				{
+					"name": "place_list",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"api_name\" : \"place\",\r\n  \"api_method\" : \"list\",\r\n  \"data\" : {\r\n      \"order_by\" : \"place_name\"\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "place_detail",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"api_name\" : \"place\",\r\n  \"api_method\" : \"detail\",\r\n  \"data\" : {\r\n      \"place_id\" : 3\r\n    }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "place_add",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"api_name\": \"place\",\r\n\t\"api_method\": \"add\",\r\n\t\"data\" : {\r\n\t\t\"place_name\" : \"ging\",\r\n    \"place_type_id\": \"1\",\r\n    \"place_name\": \"บ้านน้องกิ๊ง\",\r\n    \"place_des\": \"ก็ดีไง\",\r\n    \"lat\": \"13.00001\",\r\n    \"lng\": \"100.00001\",\r\n    \"phone\": \"09923\",\r\n    \"addr\": \"Ging Home\",\r\n    \"province_id\": \"1\",\r\n    \"district_id\": \"1\",\r\n    \"order_total\": \"1000\",\r\n    \"emp_id\": \"1\",\r\n    \"contact_name\": \"กิ๊ง\",\r\n    \"email\": \"www@ll.com\",\r\n    \"line\": \"g001\",\r\n    \"fb\": \"g001fb\",\r\n    \"place_plant\" : [{\r\n        \"place_plant_id\" : null,\r\n    \t\t\"place_id\" : null,\r\n    \t\t\"plant_id\" : 2,\r\n    \t\t\"plant_date\" : \"2017-01-05\"\r\n    \t}, {\r\n        \"place_plant_id\" : null,\r\n    \t\t\"place_id\" : null,\r\n    \t\t\"plant_id\" : 1,\r\n    \t\t\"plant_date\" : \"2017-01-05\"\r\n      }, {\r\n          \"place_plant_id\" : null,\r\n      \t\t\"place_id\" : null,\r\n      \t\t\"plant_id\" : 3,\r\n      \t\t\"plant_date\" : \"2017-01-05\"\r\n      }]\r\n\t}\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "place_update",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"api_name\": \"place\",\r\n\t\"api_method\": \"update\",\r\n\t\"data\" : {\r\n    \"place_id\" : 117,\r\n    \"place_name\" : \"ging\",\r\n    \"place_type_id\": \"1\",\r\n    \"place_name\": \"บ้านน้องกิ๊งแก้ปลูก\",\r\n    \"place_des\": \"ก็ดีไง\",\r\n    \"lat\": \"13.00001\",\r\n    \"lng\": \"100.00001\",\r\n    \"phone\": \"09923\",\r\n    \"addr\": \"Ging Home\",\r\n    \"province_id\": \"1\",\r\n    \"district_id\": \"1\",\r\n    \"order_total\": \"1000\",\r\n    \"emp_id\": \"1\",\r\n    \"contact_name\": \"กิ๊ง\",\r\n    \"email\": \"www@ll.com\",\r\n    \"line\": \"g001\",\r\n    \"fb\": \"g001fb\",\r\n    \"place_plant\" : [{\r\n        \"place_plant_id\" : 10,\r\n        \"place_id\" : 117,\r\n        \"plant_id\" : 4,\r\n        \"plant_date\" : \"2017-01-04\"\r\n      }, {\r\n        \"place_plant_id\" : 8,\r\n        \"place_id\" : 117,\r\n        \"plant_id\" : 1,\r\n        \"plant_date\" : \"2017-01-04\"\r\n      }, {\r\n          \"place_plant_id\" : 9,\r\n          \"place_id\" : 117,\r\n          \"plant_id\" : 2,\r\n          \"plant_date\" : \"2017-02-05\"\r\n      }]\r\n  }\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "place_delete",
+					"request": {
+						"url": "http://localhost/saleman_api/",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
