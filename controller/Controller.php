@@ -28,6 +28,8 @@ class Controller {
         // echo $apiMethod;
         // echo $postReq->data->data_1;
         // echo $postReq->data->data_2[0]->data_22;
+
+        // echo
         try {
             if ( $apiName == 'contact' )
             {
@@ -73,8 +75,30 @@ class Controller {
                     break;
               }
             }
+            elseif( $apiName == 'plan' )
+            {
+              switch ($apiMethod) {
+              case 'list':
+                    $this->placeController->planList($data);
+                    break;
+              case 'detail':
+                    $this->placeController->placeDetail($data);
+                    break;
+              case 'add':
+                    $this->placeController->placeAdd($data);
+                    break;
+              case 'update':
+                    $this->placeController->placeUpdate($data);
+                    break;
+              case 'delete':
+                    $this->placeController->placeDelete($data);
+                    break;
+              default:
+                    break;
+              }
+            }
             else {
-                $this->showError("API not found", "Page for operation ".$apiModel." was not found!");
+                $this->showError("API not found", "Page for operation ".$apiMethod." was not found!");
             }
         } catch ( Exception $e ) {
             // some unknown Exception got through here, use application error page to display it

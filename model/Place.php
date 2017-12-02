@@ -22,6 +22,26 @@ class Place {
         return $places;
     }
 
+    public function selectByMonthYear($month , $year, $orderby) {
+
+        $dbres = mysql_query("SELECT *
+    FROM plan pn
+        LEFT JOIN
+    plan_dt pndt ON (pn.plan_id = pndt.plan_id)
+        LEFT JOIN
+    place pc ON (pndt.place_id = pc.place_id)
+        LEFT JOIN
+    contact ct ON (pc.contact_id = ct.contact_id)
+        LEFT JOIN
+    place_type pt ON (pc.place_type_id = pt.place_type_id)
+    where month = $month and year = $year order by $orderby asc");
+        $places = array();
+        while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
+            $places[] = $obj;
+        }
+        return $places;
+    }
+
     public function selectById($id) {
         $dbId = mysql_real_escape_string($id);
         $dbres = mysql_query("SELECT * FROM place p left join contact c on (p.contact_id=c.contact_id) LEFT JOIN
