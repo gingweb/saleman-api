@@ -56,6 +56,9 @@ class Controller {
             elseif( $apiName == 'place' )
             {
               switch ($apiMethod) {
+              case 'allmy':
+                    $this->placeController->placeAllMonthYear($data);
+                    break;
               case 'list':
                     $this->placeController->placeList($data);
                     break;
@@ -80,6 +83,9 @@ class Controller {
               switch ($apiMethod) {
               case 'list':
                     $this->placeController->planList($data);
+                    break;
+              case 'sum':
+                    $this->placeController->planSum($data);
                     break;
               case 'detail':
                     $this->placeController->placeDetail($data);

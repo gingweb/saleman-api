@@ -31,11 +31,27 @@ class PlaceController {
         echo $place;
     }
 
-    public function PlanList($data) {
+    public function planList($data) {
         $orderby = isset($data->order_by)?$data->order_by:NULL;
         $month = isset($data->month)?$data->month:NULL;
         $year = isset($data->year)?$data->year:NULL;
         $places = $this->placeService->getPlanMonthYear($month,$year,$orderby);
+        echo $places;
+    }
+
+    public function planSum($data) {
+        $orderby = isset($data->order_by)?$data->order_by:NULL;
+        $month = isset($data->month)?$data->month:NULL;
+        $year = isset($data->year)?$data->year:NULL;
+        $places = $this->placeService->sumPlanMonthYear($month,$year,$orderby);
+        echo $places;
+    }
+
+    public function placeAllMonthYear($data) {
+        $orderby = isset($data->order_by)?$data->order_by:NULL;
+        $month = isset($data->month)?$data->month:NULL;
+        $year = isset($data->year)?$data->year:NULL;
+        $places = $this->placeService->allPlaceMonthYear($month, $year, $orderby);
         echo $places;
     }
 

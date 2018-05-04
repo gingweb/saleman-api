@@ -116,6 +116,49 @@ class PlaceService {
         }
     }
 
+    public function sumPlanMonthYear($month,$year,$orderby) {
+        try {
+            $this->openDb();
+            $resPlaces = $this->place->sumByMonthYear($month,$year,$orderby);
+            foreach($resPlaces as $key=>$value){
+              if ( !isset($value->contact_id) )
+              {
+                $resContact = null;
+              }else {
+               $resContact = $this->getContact($value->contact_id);
+               $value->{"contact"} = $resContact;
+              }
+            }
+
+            $this->closeDb();
+            return json_encode($resPlaces);
+        } catch (Exception $e) {
+            $this->closeDb();
+            throw $e;
+        }
+    }
+
+    public function allPlaceMonthYear($month, $year ,$orderby) {
+        try {
+            $this->openDb();
+            $resPlaces = $this->place->allPlaceMonthYear($month, $year ,$orderby);
+            foreach($resPlaces as $key=>$value){
+              if ( !isset($value->contact_id) )
+              {
+                $resContact = null;
+              }else {
+               $resContact = $this->getContact($value->contact_id);
+               $value->{"contact"} = $resContact;
+              }
+            }
+            $this->closeDb();
+            return json_encode($resPlaces);
+        } catch (Exception $e) {
+            $this->closeDb();
+            throw $e;
+        }
+    }
+
     public function getPlace($id) {
         try {
             $this->openDb();

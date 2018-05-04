@@ -23,7 +23,6 @@ class Place {
     }
 
     public function selectByMonthYear($month , $year, $orderby) {
-
         $dbres = mysql_query("SELECT *
     FROM plan pn
         LEFT JOIN
@@ -34,7 +33,98 @@ class Place {
     contact ct ON (pc.contact_id = ct.contact_id)
         LEFT JOIN
     place_type pt ON (pc.place_type_id = pt.place_type_id)
+        LEFT JOIN
+    fix_type ft ON (pndt.fix_type_id = ft.fix_type_id)
     where month = $month and year = $year order by $orderby asc");
+        $places = array();
+        while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
+            $places[] = $obj;
+        }
+        return $places;
+    }
+
+    public function allPlaceMonthYear($month, $year, $orderby) {
+        $dbres = mysql_query("SELECT pc.place_id,
+            pc.place_name,
+            pc.place_type_id,
+            pc.lat,
+            pc.lng,
+            pc.total_sales,
+            GROUP_CONCAT(DISTINCT (plnt.plant_name)
+                SEPARATOR ',') as plant_name_arr,
+            sum(plntmnth.age_level) as is_hot
+        FROM
+            place pc
+                LEFT JOIN
+            place_type pt ON (pc.place_type_id = pt.place_type_id)
+                LEFT JOIN
+            place_plant pcplnt ON (pc.place_id = pcplnt.place_id )
+                LEFT JOIN
+            plant plnt ON (plnt.plant_id = pcplnt.plant_id)
+                LEFT JOIN
+            plant_month plntmnth ON (plnt.plant_id = plntmnth.plant_id and plntmnth.month_num = $month )
+
+        WHERE
+        pc.place_id NOT IN (SELECT DISTINCT
+                (pndt.place_id)
+            FROM
+                plan pn
+                    LEFT JOIN
+                plan_dt pndt ON (pn.plan_id = pndt.plan_id)
+            WHERE
+                pn.month = $month
+                AND pn.year = $year)
+      --  AND plan_dt_id IS NOT null
+        GROUP BY pc.place_id ");
+        $places = array();
+        while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
+            $places[] = $obj;
+        }
+        return $places;
+    }
+
+    public function sumByMonthYear($month , $year, $orderby) {
+        $dbres = mysql_query("SELECT
+        pc.place_id,
+        pn.month,
+        pn.year,
+        GROUP_CONCAT(DISTINCT (pndt.seq)
+            SEPARATOR ',') as seq_arr,
+        pc.place_name,
+        pc.is_dealer,
+        pc.lat,
+        pc.lng
+    -- ,
+      --  pc.total_sales,
+      --  GROUP_CONCAT(DISTINCT (plnt.plant_name)
+      --      SEPARATOR ',') as plant_name_arr,
+      --  plntmnth.month_num,
+      --  sum(plntmnth.age_level) as is_hot
+    FROM
+        plan pn
+            LEFT JOIN
+        plan_dt pndt ON (pn.plan_id = pndt.plan_id)
+            LEFT JOIN
+        place pc ON (pndt.place_id = pc.place_id)
+            LEFT JOIN
+        contact ct ON (pc.contact_id = ct.contact_id)
+            LEFT JOIN
+        place_type pt ON (pc.place_type_id = pt.place_type_id)
+            LEFT JOIN
+        fix_type ft ON (pndt.fix_type_id = ft.fix_type_id)
+            LEFT JOIN
+        place_plant pcplnt ON (pc.place_id = pcplnt.place_id)
+   --         LEFT JOIN
+   --     plant plnt ON (plnt.plant_id = pcplnt.plant_id)
+   --         LEFT JOIN
+     --   plant_month plntmnth ON (plnt.plant_id = plntmnth.plant_id and plntmnth.month_num = 3 )
+    WHERE
+        pn.month = 3
+          --  AND plntmnth.month_num = $month
+            AND pn.year = 2018
+          --  AND plntmnth.age_level = 1
+    GROUP BY pc.place_id
+ --   ORDER BY  pc.total_sales DESC");
         $places = array();
         while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
             $places[] = $obj;
